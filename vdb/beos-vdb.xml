@@ -8,7 +8,7 @@
 <metadata type="DDL"><![CDATA[
 
 CREATE VIEW customer_africa (
-	ID long NOT NULL OPTIONS(FIXED_LENGTH 'TRUE'),
+  id long NOT NULL PRIMARY KEY,
 	CITY string(30),
 	COUNTRY string(50),
 	STREET string(30),
@@ -22,7 +22,7 @@ AS
 	SELECT * FROM src_africa.AF_CUSTOMER;
 
 CREATE VIEW customer_europa (
-	id long NOT NULL OPTIONS(FIXED_LENGTH 'TRUE'),
+  id long NOT NULL PRIMARY KEY,
 	city string(4000),
 	country string(4000),
 	street string(4000),
@@ -33,19 +33,6 @@ CREATE VIEW customer_europa (
 )
 AS
 	SELECT * FROM src_europa.eu_customer;
-
-CREATE VIEW customer_all (
-	ID long NOT NULL OPTIONS(FIXED_LENGTH 'TRUE'),
-	CITY string(30),
-	COUNTRY string(50),
-	STREET string(30),
-	POBOX string(30),
-	BIRTHDATE date OPTIONS(FIXED_LENGTH 'TRUE'),
-	FIRSTNAME string(30),
-	LASTNAME string(30)
-)
-AS
-	SELECT customer_vbl.customer_africa.ID, customer_vbl.customer_africa.CITY, customer_vbl.customer_africa.COUNTRY, customer_vbl.customer_africa.STREET, customer_vbl.customer_africa.POBOX, customer_vbl.customer_africa.BIRTHDATE, customer_vbl.customer_africa.FIRSTNAME, customer_vbl.customer_africa.LASTNAME FROM customer_vbl.customer_africa UNION ALL SELECT customer_vbl.customer_europa.id, customer_vbl.customer_europa.city, customer_vbl.customer_europa.country, customer_vbl.customer_europa.street, customer_vbl.customer_europa.zip AS POBOX, customer_vbl.customer_europa.birthdate, customer_vbl.customer_europa.firstname, customer_vbl.customer_europa.lastname FROM customer_vbl.customer_europa;
 
 ]]></metadata>
 </model>
