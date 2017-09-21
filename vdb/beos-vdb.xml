@@ -137,7 +137,7 @@ CREATE FOREIGN TABLE eu_moneytransfer (
 <metadata type="DDL"><![CDATA[
 
 CREATE VIEW customers (
-	ID long NOT NULL OPTIONS(FIXED_LENGTH 'TRUE') PRIMARY KEY,
+	ID long NOT NULL PRIMARY KEY,
 	CITY string(30),
 	COUNTRY string(50),
 	STREET string(30),
