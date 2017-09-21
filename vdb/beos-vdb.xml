@@ -140,7 +140,7 @@ AS
 		customer_vbl.customer_africa
 UNION ALL
 SELECT
-		customer_vbl.customer_europa.id, customer_vbl.customer_europa.city, customer_vbl.customer_europa.country, customer_vbl.customer_europa.street, customer_vbl.customer_europa.zip AS POBOX, customer_vbl.customer_europa.birthdate, customer_vbl.customer_europa.firstname, customer_vbl.customer_europa.lastname
+		customer_vbl.customer_europa.id + 100, customer_vbl.customer_europa.city, customer_vbl.customer_europa.country, customer_vbl.customer_europa.street, customer_vbl.customer_europa.zip AS POBOX, customer_vbl.customer_europa.birthdate, customer_vbl.customer_europa.firstname, customer_vbl.customer_europa.lastname
 	FROM
 		customer_vbl.customer_europa;
 
