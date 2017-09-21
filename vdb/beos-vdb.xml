@@ -17,7 +17,7 @@ CREATE VIEW customer_africa (
 	FIRSTNAME string(30),
 	LASTNAME string(30),
 	SURNAME string(30)
-) 
+)
 AS
 	SELECT * FROM src_africa.AF_CUSTOMER;
 
@@ -30,7 +30,7 @@ CREATE VIEW customer_europa (
 	birthdate date OPTIONS(FIXED_LENGTH 'TRUE'),
 	firstname string(4000),
 	lastname string(4000)
-) 
+)
 AS
 	SELECT * FROM src_europa.eu_customer;
 
@@ -43,14 +43,14 @@ CREATE VIEW customer_all (
 	BIRTHDATE date OPTIONS(FIXED_LENGTH 'TRUE'),
 	FIRSTNAME string(30),
 	LASTNAME string(30)
-) 
+)
 AS
 	SELECT customer_vbl.customer_africa.ID, customer_vbl.customer_africa.CITY, customer_vbl.customer_africa.COUNTRY, customer_vbl.customer_africa.STREET, customer_vbl.customer_africa.POBOX, customer_vbl.customer_africa.BIRTHDATE, customer_vbl.customer_africa.FIRSTNAME, customer_vbl.customer_africa.LASTNAME FROM customer_vbl.customer_africa UNION ALL SELECT customer_vbl.customer_europa.id, customer_vbl.customer_europa.city, customer_vbl.customer_europa.country, customer_vbl.customer_europa.street, customer_vbl.customer_europa.zip AS POBOX, customer_vbl.customer_europa.birthdate, customer_vbl.customer_europa.firstname, customer_vbl.customer_europa.lastname FROM customer_vbl.customer_europa;
 
 ]]></metadata>
 </model>
 <model name="src_africa" visible="false">
-<source connection-jndi-name="src_africa_DS" name="src_africa" translator-name="mysql5"/>
+<source connection-jndi-name="beosbank-africa-DS" name="src_africa" translator-name="mysql5"/>
 <metadata type="DDL"><![CDATA[
 
 CREATE FOREIGN TABLE AF_CUSTOMER (
@@ -92,7 +92,7 @@ CREATE FOREIGN TABLE AF_MONEYTRANSFER (
 ]]></metadata>
 </model>
 <model name="src_europa" visible="false">
-<source connection-jndi-name="src_europa_DS" name="src_europa" translator-name="postgresql"/>
+<source connection-jndi-name="beosbank-europa-DS" name="src_europa" translator-name="postgresql"/>
 <metadata type="DDL"><![CDATA[
 
 CREATE FOREIGN TABLE eu_customer (
@@ -137,7 +137,7 @@ CREATE FOREIGN TABLE eu_moneytransfer (
 <metadata type="DDL"><![CDATA[
 
 CREATE VIEW customers (
-	ID long NOT NULL OPTIONS(FIXED_LENGTH 'TRUE'),
+	ID long NOT NULL OPTIONS(FIXED_LENGTH 'TRUE') PRIMARY KEY,
 	CITY string(30),
 	COUNTRY string(50),
 	STREET string(30),
@@ -145,7 +145,7 @@ CREATE VIEW customers (
 	BIRTHDATE date OPTIONS(FIXED_LENGTH 'TRUE'),
 	FIRSTNAME string(30),
 	LASTNAME string(30)
-) 
+)
 AS
 	SELECT
 		customer_vbl.customer_africa.ID, customer_vbl.customer_africa.CITY, customer_vbl.customer_africa.COUNTRY, customer_vbl.customer_africa.STREET, customer_vbl.customer_africa.POBOX, customer_vbl.customer_africa.BIRTHDATE, customer_vbl.customer_africa.FIRSTNAME, customer_vbl.customer_africa.LASTNAME
