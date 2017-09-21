@@ -3,7 +3,7 @@
 <description/>
 <property name="validationDateTime" value="Thu Sep 21 12:38:42 CEST 2017"/>
 <property name="validationVersion" value="8.12.5"/>
-<model name="customer_vbl" type="VIRTUAL" visible="false">
+<model name="customer_vbl" type="VIRTUAL" visible="true">
 <property name="imports" value="src_europa"/>
 <metadata type="DDL"><![CDATA[
 
